@@ -30,19 +30,19 @@ public class Employee {
 	
 	public void setMonthlySalaryBasedOnGrade() {	
 		int ForeignerMonthlySalary;
-		if (this.profile.getGrade == 1) {
+		if (this.profile.getGrade() == 1) {
 			this.income.setMonthlySalary(3000000);
 			if (isForeigner) {
 				ForeignerMonthlySalary = 3000000 * 1.5;
 				this.income.setMonthlySalary(ForeignerMonthlySalary);
 			}
-		}else if (this.profile.getGrade == 2) {
+		}else if (this.profile.getGrade() == 2) {
 			this.income.setMonthlySalary(5000000);
 			if (isForeigner) {
 				ForeignerMonthlySalary = 5000000 * 1.5;
 				this.income.setMonthlySalary(ForeignerMonthlySalary);
 			}
-		}else if (this.profile.getGrade == 3) {
+		}else if (this.profile.getGrade() == 3) {
 			this.income.setMonthlySalary(7000000);
 			if (isForeigner) {
 				ForeignerMonthlySalary = 5000000 * 1.5;
@@ -65,7 +65,7 @@ public class Employee {
 		return TaxFunction.calculateTax(
 			this.income.getMonthlySalary(), 
 			this.income.getOtherMonthlyIncome(), 
-			monthWorkingInYear, 
+			this.monthWorkingInYear, 
 			this.income.getAnnualDeductible(), 
 			this.familyInformation.getSpouseIDNumber().equals(""), 
 			this.familyInformation.getChildNumbers().size()
