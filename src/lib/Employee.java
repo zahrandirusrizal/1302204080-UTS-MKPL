@@ -13,6 +13,22 @@ public class EmployeeIdentityInformation {
 	private String address;
 	private int grade;
 
+	public EmployeeIdentityInformation(
+		String newEmployeeID.
+		String newFirstName,
+		String newLastName,
+		String newID,
+		String newAddress,
+		String newGrade
+	){
+		this.employeeId = newEmployeeID;
+		this.firstName = newFirstName;
+		this.lastName = newLastName;
+		this.idNumber = newID;
+		this.address = newAddress;
+		this.grade = newGrade;
+	}
+
 	public void setEmployeeID(String newEmployeeID){
 		this.newEmployeeID = newEmployeeID;
 	}
@@ -62,6 +78,45 @@ public class EmployeeIdentityInformation {
 	}
 }
 
+public class EmployeeIncomeInformation{
+	private int monthlySalary;
+	private int otherMonthlyIncome;
+	private int annualDeductible;
+
+	public EmployeeIncomeInformation(
+		int newSalary,
+		int newOtherMonthlyIncome,
+		int newAnnualDeductible
+	){
+		this.monthlySalary = newSalary;
+		this.otherMonthlyIncome = newOtherMonthlyIncome;
+		this.annualDeductible = newAnnualDeductible;
+	}
+
+	public void setMonthlySalary(int newSalary){
+		this.monthlySalary = newSalary;
+	}	
+
+	public void setOtherMonthlyIncome(int newOtherMonthlyIncome){
+		this.otherMonthlyIncome = newOtherMonthlyIncome;
+	}
+
+	public void setAnnualDeductible(int newAnnualDeductible){
+		this.annualDeductible = newAnnualDeductible;
+	}
+
+	public int getMonthlySalary(){
+		return this.monthlySalary;
+	}
+
+	public int getOtherMonthlyIncome(){
+		return this.otherMonthlyIncome;
+	}
+
+	public int getAnnualDeductible(){
+		return this.annualDeductible;
+	}
+}
 
 public class Employee {
 
@@ -75,9 +130,7 @@ public class Employee {
 	private boolean isForeigner;
 	private boolean gender; //true = Laki-laki, false = Perempuan
 	
-	private int monthlySalary;
-	private int otherMonthlyIncome;
-	private int annualDeductible;
+	private EmployeeIncomeInformation income;
 	
 	private String spouseName;
 	private String spouseIdNumber;
