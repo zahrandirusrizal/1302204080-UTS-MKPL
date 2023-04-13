@@ -4,6 +4,75 @@ import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
 
+public class Employee {
+
+	private EmployeeIdentityInformation profile;
+	private LocalDate dateJoined;
+	private int monthWorkingInYear;
+	private boolean isForeigner;
+	private Gender gender;
+	private EmployeeIncomeInformation income;
+	private EmployeeFamilyInformation familyInformation;
+	
+	public Employee(
+		EmployeeIdentityInformation newProfile, 
+		LocalDate newDateJoined, 
+		EmployeeFamilyInformation newFamilyInformation, 
+		Gender newGender, 
+		boolean newIsForeigner
+		) {
+		this.profile = newProfile;
+		this.dateJoined = newDateJoined;
+		this.isForeigner = newIsForeigner;
+		this.gender = newGender;
+		this.familyInformation = newFamilyInformation;
+	}
+	
+	public void setMonthlySalaryBasedOnGrade() {	
+		int ForeignerMonthlySalary;
+		if (this.profile.getGrade == 1) {
+			this.income.setMonthlySalary(3000000);
+			if (isForeigner) {
+				ForeignerMonthlySalary = 3000000 * 1.5;
+				this.income.setMonthlySalary(ForeignerMonthlySalary);
+			}
+		}else if (this.profile.getGrade == 2) {
+			this.income.setMonthlySalary(5000000);
+			if (isForeigner) {
+				ForeignerMonthlySalary = 5000000 * 1.5;
+				this.income.setMonthlySalary(ForeignerMonthlySalary);
+			}
+		}else if (this.profile.getGrade == 3) {
+			this.income.setMonthlySalary(7000000);
+			if (isForeigner) {
+				ForeignerMonthlySalary = 5000000 * 1.5;
+				this.income.setMonthlySalary(ForeignerMonthlySalary);
+			}
+		}
+	}
+	
+	public int getAnnualIncomeTax() {
+		
+		//Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
+		LocalDate date = LocalDate.now();
+		
+		if (date.getYear() == this.dateJoined.getYear()) {
+			this.monthWorkingInYear = date.getMonthValue() - this.dateJoined.getMonthValue();
+		}else {
+			this.monthWorkingInYear = 12;
+		}
+		
+		return TaxFunction.calculateTax(
+			this.income.getMonthlySalary(), 
+			this.income.getOtherMonthlyIncome(), 
+			monthWorkingInYear, 
+			this.income.getAnnualDeductible(), 
+			this.familyInformation.getSpouseIDNumber().equals(""), 
+			this.familyInformation.getChildNumbers().size()
+			);
+	}
+}
+
 public class EmployeeIdentityInformation {
 	private String employeeId;
 	private String firstName;
@@ -133,6 +202,22 @@ public class EmployeeFamilyInformation{
 		childIdNumbers = new LinkedList<String>();
 	}
 
+	public String getSpouseName(){
+		return this.spouseName;
+	}
+
+	public int getSpouseIDNumber(){
+		return this.spouseIdNumber;
+	}
+
+	public List<String> getChildNames(){
+		return this.childNames;
+	}
+
+	public List<String> getChildNumbers(){
+		return this.childIdNumbers;
+	}
+
 	public void setSpouse(String newSpouseName, String newSpouseIDNumber) {
 		this.spouseName = newSpouseName;
 		this.spouseIdNumber = newSpouseIDNumber;
@@ -149,67 +234,4 @@ enum Gender {
 	PEREMPUAN
 }
 
-public class Employee {
 
-	private EmployeeIdentityInformation profile;
-	
-	private LocalDate dateJoined;
-	private int monthWorkingInYear;
-	
-	private boolean isForeigner;
-	private Gender gender;
-	
-	private EmployeeIncomeInformation income;
-	
-	private EmployeeFamilyInformation familyInformation;
-	
-	public Employee(EmployeeIdentityInformation newProfile, LocalDate newDateJoined, EmployeeFamilyInformation newFamilyInformation, Gender newGender, boolean newIsForeigner) {
-		this.profile = newProfile;
-		this.dateJoined = newDateJoined;
-		this.isForeigner = newIsForeigner;
-		this.gender = newGender;
-		this.familyInformation = newFamilyInformation;
-	}
-	
-	/**
-	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya (grade 1: 3.000.000 per bulan, grade 2: 5.000.000 per bulan, grade 3: 7.000.000 per bulan)
-	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
-	 */
-	
-	public void setMonthlySalaryBasedOnGrade() {	
-		int ForeignerMonthlySalary;
-		if (this.profile.getGrade == 1) {
-			this.income.setMonthlySalary(3000000);
-			if (isForeigner) {
-				ForeignerMonthlySalary = 3000000 * 1.5;
-				this.income.setMonthlySalary(ForeignerMonthlySalary);
-			}
-		}else if (this.profile.getGrade == 2) {
-			this.income.setMonthlySalary(5000000);
-			if (isForeigner) {
-				ForeignerMonthlySalary = 5000000 * 1.5;
-				this.income.setMonthlySalary(ForeignerMonthlySalary);
-			}
-		}else if (this.profile.getGrade == 3) {
-			this.income.setMonthlySalary(7000000);
-			if (isForeigner) {
-				ForeignerMonthlySalary = 5000000 * 1.5;
-				this.income.setMonthlySalary(ForeignerMonthlySalary);
-			}
-		}
-	}
-	
-	public int getAnnualIncomeTax() {
-		
-		//Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
-		LocalDate date = LocalDate.now();
-		
-		if (date.getYear() == yearJoined) {
-			monthWorkingInYear = date.getMonthValue() - monthJoined;
-		}else {
-			monthWorkingInYear = 12;
-		}
-		
-		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible, spouseIdNumber.equals(""), childIdNumbers.size());
-	}
-}
