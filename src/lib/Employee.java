@@ -149,9 +149,7 @@ public class Employee {
 
 	private EmployeeIdentityInformation profile;
 	
-	private int yearJoined;
-	private int monthJoined;
-	private int dayJoined;
+	private LocalDate dateJoined;
 	private int monthWorkingInYear;
 	
 	private boolean isForeigner;
