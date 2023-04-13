@@ -1,5 +1,4 @@
 package lib;
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.LinkedList;
@@ -177,21 +176,25 @@ public class Employee {
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
 	
-	public void setMonthlySalary(int grade) {	
-		if (grade == 1) {
-			monthlySalary = 3000000;
+	public void setMonthlySalaryBasedOnGrade() {	
+		int ForeignerMonthlySalary;
+		if (this.profile.getGrade == 1) {
+			this.income.setMonthlySalary(3000000);
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				ForeignerMonthlySalary = 3000000 * 1.5;
+				this.income.setMonthlySalary(ForeignerMonthlySalary);
 			}
-		}else if (grade == 2) {
-			monthlySalary = 5000000;
+		}else if (this.profile.getGrade == 2) {
+			this.income.setMonthlySalary(5000000);
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				ForeignerMonthlySalary = 5000000 * 1.5;
+				this.income.setMonthlySalary(ForeignerMonthlySalary);
 			}
-		}else if (grade == 3) {
-			monthlySalary = 7000000;
+		}else if (this.profile.getGrade == 3) {
+			this.income.setMonthlySalary(7000000);
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				ForeignerMonthlySalary = 5000000 * 1.5;
+				this.income.setMonthlySalary(ForeignerMonthlySalary);
 			}
 		}
 	}
