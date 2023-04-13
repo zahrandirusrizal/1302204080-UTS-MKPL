@@ -134,16 +134,9 @@ public class EmployeeFamilyInformation{
 		childIdNumbers = new LinkedList<String>();
 	}
 
-	public void setSpouseName(String newSpouseName){
+	public void setSpouse(String newSpouseName, String newSpouseIDNumber) {
 		this.spouseName = newSpouseName;
-	}	
-
-	public void setSpouseIDNumber(String newSpouseIDNumber){
 		this.spouseIdNumber = newSpouseIDNumber;
-	}
-
-	public void setSpouseName(String newSpouseName){
-		this.spouseName = newSpouseName;
 	}
 
 	public void addChild(String newChildName, String newChildIdNumber) {
