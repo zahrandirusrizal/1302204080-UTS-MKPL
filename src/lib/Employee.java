@@ -118,6 +118,40 @@ public class EmployeeIncomeInformation{
 	}
 }
 
+public class EmployeeFamilyInformation{
+	private String spouseName;
+	private int spouseIdNumber;
+	private List<String> childNames;
+	private List<String> childIdNumbers;
+
+	public EmployeeFamilyInformation(
+		String newSpouseName,
+		int newSpouseIDNumber,
+	){
+		this.spouseName = newSpouseName;
+		this.spouseIdNumber = newSpouseIDNumber;
+		childNames = new LinkedList<String>();
+		childIdNumbers = new LinkedList<String>();
+	}
+
+	public void setSpouseName(String newSpouseName){
+		this.spouseName = newSpouseName;
+	}	
+
+	public void setSpouseIDNumber(String newSpouseIDNumber){
+		this.spouseIdNumber = newSpouseIDNumber;
+	}
+
+	public void setSpouseName(String newSpouseName){
+		this.spouseName = newSpouseName;
+	}
+
+	public void addChild(String newChildName, String newChildIdNumber) {
+		this.childNames.add(newChildName);
+		this.childIdNumbers.add(newChildIdNumber);
+	}
+}
+
 public class Employee {
 
 	private EmployeeIdentityInformation profile;
@@ -132,11 +166,7 @@ public class Employee {
 	
 	private EmployeeIncomeInformation income;
 	
-	private String spouseName;
-	private String spouseIdNumber;
-
-	private List<String> childNames;
-	private List<String> childIdNumbers;
+	private EmployeeFamilyInformation familyInformation;
 	
 	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
 		this.employeeId = employeeId;
