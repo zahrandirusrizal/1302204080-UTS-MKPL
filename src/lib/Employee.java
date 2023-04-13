@@ -5,13 +5,67 @@ import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Employee {
-
+public class EmployeeIdentityInformation {
 	private String employeeId;
 	private String firstName;
 	private String lastName;
-	private String idNumber;
+	private int idNumber;
 	private String address;
+	private int grade;
+
+	public void setEmployeeID(String newEmployeeID){
+		this.newEmployeeID = newEmployeeID;
+	}
+
+	public void setFirstName(String newFirstName){
+		this.firstName = newFirstName;
+	}
+
+	public void setLastName(String newLastName){
+		this.lastName = newLastName;
+	}
+
+	public void setIDNumber(int newID){
+		this.idNumber = newID;
+	}
+
+	public void setAddress(String newAddress){
+		this.address = newAddress;
+	}
+
+	public void setGrade(int newGrade){
+		this.grade = newGrade;
+	}
+
+	public String getEmployeeID(){
+		return this.employeeId;
+	}
+
+	public String getFirstName(){
+		return this.firstName;
+	}
+
+	public String getLastName(){
+		return this.lastName;
+	}
+
+	public String getIDNumber(){
+		return this.idNumber;
+	}
+
+	public String getAddress(){
+		return this.address;
+	}
+
+	public int getGrade(){
+		return this.grade;
+	}
+}
+
+
+public class Employee {
+
+	private EmployeeIdentityInformation profile;
 	
 	private int yearJoined;
 	private int monthJoined;
